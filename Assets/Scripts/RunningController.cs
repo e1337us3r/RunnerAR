@@ -10,12 +10,21 @@ public class RunningController : MonoBehaviour
 
     int stepCount = 0;
 
+   
+    Vector3 startingPosition;
+    Quaternion startingRotation;
+
+
+
     void Start()
     {
+        startingPosition = this.gameObject.transform.position;
+        startingRotation = this.gameObject.transform.rotation;
         
         rb = this.gameObject.GetComponent<Rigidbody>();
+        
 
-#if  UNITY_ANDROID
+#if  UNITY_ANDROID && !UNITY_EDITOR
         plugin = new AndroidJavaClass("jp.kshoji.unity.sensor.UnitySensorPlugin").CallStatic<AndroidJavaObject>("getInstance");
         plugin.Call("setSamplingPeriod", 50 * 1000); // refresh sensor 50 mSec each
         plugin.Call("startSensorListening", "stepcounter");
@@ -32,7 +41,7 @@ public class RunningController : MonoBehaviour
 
     void OnApplicationQuit()
     {
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
         if (plugin != null)
         {
             plugin.Call("terminate");
@@ -51,7 +60,7 @@ public class RunningController : MonoBehaviour
             Thread.Sleep(100);*/
             
             Debug.Log("Check sensor while start");
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
             if (plugin != null)
             {
                 float[] sensorValue = plugin.Call<float[]>("getSensorValues", "stepcounter");
@@ -62,7 +71,7 @@ public class RunningController : MonoBehaviour
                     {
                         //Dispatcher.RunOnMainThread(() => {
                         //povCamera.transform.position = povCamera.transform.position + povCamera.transform.forward;
-                        rb.AddForce(camera.transform.forward * 250);
+                        rb.AddForce(camera.transform.forward * 150);
                         //});
                         stepCount = (int)sensorValue[0];
                     }
@@ -71,21 +80,37 @@ public class RunningController : MonoBehaviour
                 }
             }
 #endif
-            Debug.Log("Check sensor while end");
+        Debug.Log("Check sensor while end");
         //}
     }
 
     // Update is called once per frame
     void Update()
     {
-
+#if UNITY_EDITOR
         // Unity editörü üzerinden test etmek için
-       /* if (Input.GetButtonDown("Fire1"))
-        {
-            Debug.Log("fire");
-            rb.AddForce(camera.transform.forward*250);
+        if (Input.GetButtonDown("Fire1"))
+         {
+             Debug.Log("fire");
+             rb.AddForce(camera.transform.forward*150);
 
-        }*/
+         }
+#endif
+
+        // sürekli oynamayı kolaylaştırmak için oyuncu aşağı düşerse tekrar başa dön
+        if (this.gameObject.transform.position.y < startingPosition.y - 5)
+        {
+            this.gameObject.transform.position = startingPosition;
+            this.gameObject.transform.rotation = startingRotation;
+
+            camera.transform.rotation = new Quaternion(0,0,0,0);
+
+            // oyuncunun üzerindeki kuvvetleri resetle
+            rb.velocity = Vector3.zero;
+            rb.gameObject.SetActive(false);
+            rb.gameObject.SetActive(true);
+        }
+
     }
 
 
