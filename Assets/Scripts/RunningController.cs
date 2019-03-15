@@ -92,7 +92,7 @@ public class RunningController : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
          {
              Debug.Log("fire");
-             rb.AddForce(camera.transform.forward*150);
+             rb.AddForce(camera.transform.forward*40);
 
          }
 #endif
