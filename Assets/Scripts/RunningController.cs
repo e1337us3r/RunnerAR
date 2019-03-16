@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class RunningController : MonoBehaviour
 {
@@ -10,19 +12,11 @@ public class RunningController : MonoBehaviour
 
     int stepCount = 0;
 
-   
-    Vector3 startingPosition;
-    Quaternion startingRotation;
-
 
 
     void Start()
     {
-        startingPosition = this.gameObject.transform.position;
-        startingRotation = this.gameObject.transform.rotation;
-        
         rb = this.gameObject.GetComponent<Rigidbody>();
-        
 
 #if  UNITY_ANDROID && !UNITY_EDITOR
         plugin = new AndroidJavaClass("jp.kshoji.unity.sensor.UnitySensorPlugin").CallStatic<AndroidJavaObject>("getInstance");
@@ -88,30 +82,29 @@ public class RunningController : MonoBehaviour
     void Update()
     {
 #if UNITY_EDITOR
-        // Unity editörü üzerinden test etmek için
+        // Testing for Unity Editor
         if (Input.GetButtonDown("Fire1"))
-         {
-             Debug.Log("fire");
              rb.AddForce(camera.transform.forward*40);
-
-         }
+        if(Input.GetKeyDown(KeyCode.A))
+            rb.AddForce(camera.transform.right * -40);
+        if (Input.GetKeyDown(KeyCode.D))
+            rb.AddForce(camera.transform.right * 40);
 #endif
-
-        // sürekli oynamayı kolaylaştırmak için oyuncu aşağı düşerse tekrar başa dön
-        if (this.gameObject.transform.position.y < startingPosition.y - 5)
-        {
-            this.gameObject.transform.position = startingPosition;
-            this.gameObject.transform.rotation = startingRotation;
-
-            camera.transform.rotation = new Quaternion(0,0,0,0);
-
-            // oyuncunun üzerindeki kuvvetleri resetle
-            rb.velocity = Vector3.zero;
-            rb.gameObject.SetActive(false);
-            rb.gameObject.SetActive(true);
-        }
 
     }
 
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Trap")
+        {
+            restartGame();
+            camera.transform.GetChild(0).gameObject.SetActive(true);
+        }
+    }
+
+    private void restartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }

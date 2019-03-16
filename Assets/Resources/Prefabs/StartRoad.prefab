@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4676296670817734062}
   - component: {fileID: 4387328513309813455}
   - component: {fileID: 5894430945161571829}
+  - component: {fileID: 207105779}
+  - component: {fileID: 207105780}
   m_Layer: 0
   m_Name: StartRoad
   m_TagString: Untagged
@@ -91,3 +93,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 13.4666, y: 2.063097, z: 59.255924}
   m_Center: {x: 4.7065077, y: 6.858015, z: 5.4175053}
+--- !u!65 &207105779
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5894430945161571828}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7875748, y: 3.2240849, z: 59.255924}
+  m_Center: {x: 10.5460205, y: 7.438509, z: 5.4175053}
+--- !u!65 &207105780
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5894430945161571828}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4438281, y: 2.2394772, z: 59.205425}
+  m_Center: {x: -1.3048785, y: 6.946205, z: 5.4427547}

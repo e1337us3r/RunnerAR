@@ -87,9 +87,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7097312252790030881}
   - component: {fileID: 7144034715265228371}
+  - component: {fileID: 1378404128248531742}
   m_Layer: 0
   m_Name: SwingTrapD
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,6 +130,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &1378404128248531742
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7094642611287203897}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.3483286, y: 4.4892397, z: 0.51418686}
+  m_Center: {x: -0.10839939, y: -0.10213995, z: 0.001996994}
 --- !u!1001 &8796324749658908838
 PrefabInstance:
   m_ObjectHideFlags: 0

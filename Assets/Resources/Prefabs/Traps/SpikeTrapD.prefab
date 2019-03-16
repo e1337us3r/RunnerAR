@@ -112,6 +112,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spikeTrapAnim: {fileID: 95846521961778924}
+--- !u!65 &8645666425583556843
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7822953595154869828}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6066947, y: 2.6755412, z: 1.4535404}
+  m_Center: {x: -0.010498941, y: -1.747146, z: -0.0019989014}
 --- !u!1001 &7927944701701788595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -123,6 +136,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: spikes
+      objectReference: {fileID: 0}
+    - target: {fileID: 186056520464743927, guid: 1f1321c3250d2624b911a7fa653a442a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Trap
       objectReference: {fileID: 0}
     - target: {fileID: 1820333336733612030, guid: 1f1321c3250d2624b911a7fa653a442a,
         type: 3}
@@ -181,6 +199,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f1321c3250d2624b911a7fa653a442a, type: 3}
+--- !u!1 &7822953595154869828 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 186056520464743927, guid: 1f1321c3250d2624b911a7fa653a442a,
+    type: 3}
+  m_PrefabInstance: {fileID: 7927944701701788595}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8594741887878751309 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1820333336733612030, guid: 1f1321c3250d2624b911a7fa653a442a,
